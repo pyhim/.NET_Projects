@@ -7,6 +7,7 @@ public class CreditCard
     private string _expiryDate;
     private string _cvcNumber;
     private string _cardType;
+    private double _amount;
 
     public string CardNumber
     {
@@ -17,6 +18,7 @@ public class CreditCard
             {
                 throw new ArgumentException("Card number must be exactly 16 characters.");
             }
+            _cardNumber = value;
         }
     }
 
@@ -30,7 +32,7 @@ public class CreditCard
                 if (char.IsLetter(c)) continue;
                 if (c != ' ') throw new ArgumentException("Cardholder name must only contain letters.");
             }
-            this._cardholderName = value;
+            _cardholderName = value;
         }
     }
 
@@ -47,7 +49,7 @@ public class CreditCard
             {
                 throw new ArgumentException("Expiry date must contain '/'");
             }
-            this._expiryDate = value;
+            _expiryDate = value;
         }
     }
 
@@ -68,7 +70,7 @@ public class CreditCard
                     throw new ArgumentException("CVC number must only contain numbers.");
                 }
             }
-            this._cvcNumber = value;
+            _cvcNumber = value;
         }
     }
 
@@ -81,8 +83,14 @@ public class CreditCard
             {
                 throw new ArgumentException("Card type must be 'Visa' or 'Mastercard'.");
             }
-            this._cardType = value;
+            _cardType = value;
         }
+    }
+
+    public double Amount
+    {
+        get => _amount;
+        set => _amount = value;
     }
 
     public CreditCard(string cardNumber, string cardholderName, string expiryDate, string cvcNumber, string cardType)
@@ -94,12 +102,61 @@ public class CreditCard
         CardType = cardType;
     }
 
+    public override bool Equals(object? obj)
+    {
+        return ToString() == obj?.ToString();        
+    }
+    
+    public override int GetHashCode()
+    {
+        return ToString().GetHashCode();
+    }
+
+    public static bool operator <(CreditCard? left, CreditCard? right)
+    {
+        return left?.Amount < right?.Amount;
+    }
+
+    public static bool operator >(CreditCard? left, CreditCard? right)
+    {
+        return left?.Amount > right?.Amount;
+    }
+
+    public static bool operator ==(CreditCard? left, CreditCard? right)
+    {
+        return left?.CVC == right?.CVC;
+    }
+
+    public static bool operator !=(CreditCard? left, CreditCard? right)
+    {
+        return left?.CVC != right?.CVC;
+    }
+
+    public static CreditCard operator +(CreditCard? left, double right)
+    {
+        var newCard = new CreditCard(left.CardNumber, left.CardholderName, left.ExpiryDate, left.CVC, left.CardType)
+            {
+                Amount = left.Amount + right
+            };
+        return newCard;
+    }
+    
+    public static CreditCard operator -(CreditCard? left, double right)
+    {
+        var newCard = new CreditCard(left.CardNumber, left.CardholderName, left.ExpiryDate, left.CVC, left.CardType)
+            {
+                Amount = left.Amount - right
+            };
+        return newCard;
+    }
+
     public void Print()
     {
-        Console.WriteLine($"Card number: {_cardNumber}");
-        Console.WriteLine($"Cardholder name: {_cardholderName}");
-        Console.WriteLine($"Expiry date: {_expiryDate}");
-        Console.WriteLine($"CVC: {_cvcNumber}");
-        Console.WriteLine($"Card type: {_cardType}");
+        Console.WriteLine($"Card number: {CardNumber}");
+        Console.WriteLine($"Cardholder name: {CardholderName}");
+        Console.WriteLine($"Expiry date: {ExpiryDate}");
+        Console.WriteLine($"CVC: {CVC}");
+        Console.WriteLine($"Card type: {CardType}");
+        Console.WriteLine($"Amount: {Amount}");
     }
 }

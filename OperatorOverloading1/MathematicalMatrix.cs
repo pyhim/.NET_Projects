@@ -1,6 +1,4 @@
-using System.Linq.Expressions;
-
-namespace Lesson;
+namespace OperatorOverloading1;
 
 public class MathematicalMatrix
 {
@@ -14,9 +12,20 @@ public class MathematicalMatrix
         set => _matrix[row, column] = value;
     }
 
-    public MathematicalMatrix(int rows, int columns)
+    public MathematicalMatrix(int rows, int columns, bool randInit = false)
     {
         _matrix = new int[rows, columns];
+
+        if (randInit) return;
+
+        var rand = new Random();
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                _matrix[row, col] = rand.Next(1, 20);
+            }
+        }
     }
 
     public MathematicalMatrix(int[,] matrix)
@@ -84,7 +93,7 @@ public class MathematicalMatrix
     {
         if (otherMatrix.Rows != matrix.Rows || otherMatrix.Columns != matrix.Columns)
         {
-            throw new ArgumentException("Matrix sizes do not match");
+            throw new InvalidOperationException("Matrix sizes do not match");
         }
         
         return true;
@@ -131,7 +140,12 @@ public class MathematicalMatrix
         {
             for (int col = 0; col < a.Columns; col++)
             {
-                c[row, col] = ;
+                c[row, col] = 0;
+
+                for (int k = 0; k < a.Columns; k++)
+                {
+                    c[row, col] += a[row, k] * b[k, col];
+                }
             }
         }
         
@@ -140,6 +154,57 @@ public class MathematicalMatrix
 
     public static MathematicalMatrix operator *(MathematicalMatrix a, int number)
     {
-        UniteMatrices(a, number, (x, y) => x * y);
+        var c = new MathematicalMatrix(a.Rows, a.Columns);
+        
+        for (int row = 0; row < a.Rows; row++)
+        {
+            for (int col = 0; col < a.Columns; col++)
+            {
+                c[row, col] = a[row, col] * number;
+            }
+        }
+        
+        return c;
+    }
+
+    public static bool operator ==(MathematicalMatrix a, MathematicalMatrix b)
+    {
+        try
+        {
+            CheckForEqualSize(a, b);
+        }
+        catch (InvalidOperationException e)
+        {
+            Console.WriteLine("Matrices do not match by their size");
+            return false;
+        }
+
+        for (int row = 0; row < a.Rows; row++)
+        {
+            for (int col = 0; col < a.Columns; col++)
+            {
+                if (a[row, col] != b[row, col])
+                {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+
+    public static bool operator !=(MathematicalMatrix a, MathematicalMatrix b)
+    {
+        return !(a == b);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return ToString() == obj?.ToString();
+    }
+
+    public override int GetHashCode()
+    {
+        return ToString().GetHashCode();
     }
 }

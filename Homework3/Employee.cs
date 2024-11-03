@@ -13,7 +13,7 @@ public class Employee
 
     public Employee(
         string firstName, string middleName, string lastName, DateTime birthDate,
-        string phoneNumber, string email, string title, string description
+        string phoneNumber, string email, string title, string description, double salary
     )
     {
         FirstName = firstName;
@@ -24,6 +24,20 @@ public class Employee
         Email = email;
         Title = title;
         Description = description;
+        Salary = salary;
+    }
+
+    public Employee(Employee employee)
+    {
+        FirstName = employee.FirstName;
+        MiddleName = employee.MiddleName;
+        LastName = employee.LastName;
+        DateOfBirth = employee.DateOfBirth;
+        PhoneNumber = employee.PhoneNumber;
+        Email = employee.Email;
+        Title = employee.Title;
+        Description = employee.Description;
+        Salary = employee.Salary;
     }
 
     public void Input()
@@ -44,6 +58,8 @@ public class Employee
         Title = Console.ReadLine();
         Console.Write("Enter description: ");
         Description = Console.ReadLine();
+        Console.Write("Enter salary: ");
+        Salary = double.Parse(Console.ReadLine());
     }
 
     public void Print()
@@ -56,6 +72,7 @@ public class Employee
         Console.WriteLine($"Email: {Email}");
         Console.WriteLine($"Title: {Title}");
         Console.WriteLine($"Description: {Description}");
+        Console.WriteLine($"Salary: {Salary}");
     }
 
     public string FirstName
@@ -104,5 +121,43 @@ public class Employee
     {
         get => _description;
         set => _description = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public double Salary { get; set; }
+
+    public static Employee operator +(Employee employee, double amount)
+    {
+        var result = new Employee(employee);
+        result.Salary += amount;
+        
+        return result;
+    }
+    
+    public static Employee operator -(Employee employee, double amount)
+    {
+        var result = new Employee(employee);
+        result.Salary -= amount;
+        
+        return result;
+    }
+
+    public static bool operator ==(Employee employee1, Employee employee2)
+    {
+        return employee1.Salary == employee2.Salary;
+    }
+
+    public static bool operator !=(Employee employee1, Employee employee2)
+    {
+        return employee1.Salary != employee2.Salary;
+    }
+
+    public static bool operator >(Employee employee1, Employee employee2)
+    {
+        return employee1.Salary > employee2.Salary;
+    }
+
+    public static bool operator <(Employee employee1, Employee employee2)
+    {
+        return employee1.Salary < employee2.Salary;
     }
 }

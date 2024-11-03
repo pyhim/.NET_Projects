@@ -25,10 +25,10 @@ internal class Run
         // employee.Input();
         // employee.Print();
 
-        var plane1 = new Plane("Boeing 737", "Boeing Company", "04/29/2019", "Civil");
-        var plane2 = new Plane("Boeing 737", "Boeing Company", DateTime.Parse("04/29/2020"), "Civil");
-
-        plane1.Print();
-        plane2.Print();
+        // var plane1 = new Plane("Boeing 737", "Boeing Company", "04/29/2019", "Civil");
+        // var plane2 = new Plane("Boeing 737", "Boeing Company", DateTime.Parse("04/29/2020"), "Civil");
+        //
+        // plane1.Print();
+        // plane2.Print();
     }
 }

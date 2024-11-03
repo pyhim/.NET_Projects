@@ -2,91 +2,103 @@ namespace Homework3;
 
 public class City
 {
-    private string name;
-    private string countryName;
-    private string telephoneCode;
-    private string[] regionsNames;
-    private int population;
+    private string _name;
+    private string _countryName;
+    private string _telephoneCode;
+    private string[] _regionsNames;
+
+    public string Name
+    {
+        get => _name;
+        set => _name = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public string CountryName
+    {
+        get => _countryName;
+        set => _countryName = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public string TelephoneCode
+    {
+        get => _telephoneCode;
+        set => _telephoneCode = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public string[] RegionsNames
+    {
+        get => _regionsNames;
+        set => _regionsNames = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public int Population { get; set; }
 
     public City(string name, string countryName, string telephoneCode, string[] regionsNames, int population)
     {
-        this.name = name;
-        this.countryName = countryName;
-        this.telephoneCode = telephoneCode;
-        this.regionsNames = regionsNames;
-        this.population = population;
+        Name = name;
+        CountryName = countryName;
+        TelephoneCode = telephoneCode;
+        RegionsNames = regionsNames;
+        Population = population;
+    }
+
+    public City(City other)
+    {
+        Name = other.Name;
+        CountryName = other.CountryName;
+        TelephoneCode = other.TelephoneCode;
+        RegionsNames = other.RegionsNames;
+        Population = other.Population;
     }
 
     public void Input()
     {
         Console.Write("Enter name: ");
-        this.name = Console.ReadLine();
+        Name = Console.ReadLine();
         Console.Write("Enter country name: ");
-        this.countryName = Console.ReadLine();
+        CountryName = Console.ReadLine();
         Console.Write("Enter telephone code: ");
-        this.telephoneCode = Console.ReadLine();
+        TelephoneCode = Console.ReadLine();
         Console.Write("Enter regions names: ");
-        this.regionsNames = Console.ReadLine().Split(" ").ToArray();
+        RegionsNames = Console.ReadLine().Split(" ").ToArray();
         Console.Write("Enter population: ");
-        this.population = Convert.ToInt32(Console.ReadLine());
+        Population = Convert.ToInt32(Console.ReadLine());
     }
 
     public void Print()
     {
-        Console.WriteLine($"Name: {name}");
-        Console.WriteLine($"Country: {countryName}");
-        Console.WriteLine($"Telephone code: {telephoneCode}");
-        Console.WriteLine($"Regions names: {string.Join(", ", regionsNames)}");
-        Console.WriteLine($"Population: {population}");
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Country: {CountryName}");
+        Console.WriteLine($"Telephone code: {TelephoneCode}");
+        Console.WriteLine($"Regions names: {string.Join(", ", RegionsNames)}");
+        Console.WriteLine($"Population: {Population}");
     }
 
-    public string getName()
+    public static City operator -(City city, int population)
     {
-        return this.name;
+        var result = new City(city);
+        result.Population -= population;
+
+        return result;
     }
 
-    public string getCountryName()
+    public static bool operator ==(City city1, City city2)
     {
-        return this.countryName;
+        return city1.Population == city2.Population;
     }
 
-    public string getTelephoneCode()
+    public static bool operator !=(City city1, City city2)
     {
-        return this.telephoneCode;
+        return city1.Population != city2.Population;
     }
 
-    public string[] getRegionsNames()
+    public static bool operator >(City city1, City city2)
     {
-        return this.regionsNames;
+        return city1.Population > city2.Population;
     }
 
-    public int getPopulation()
+    public static bool operator <(City city1, City city2)
     {
-        return this.population;
-    }
-
-    public void setPopulation(int population)
-    {
-        this.population = population;
-    }
-
-    public void setName(string name)
-    {
-        this.name = name;
-    }
-
-    public void setCountryName(string countryName)
-    {
-        this.countryName = countryName;
-    }
-
-    public void setTelephoneCode(string telephoneCode)
-    {
-        this.telephoneCode = telephoneCode;
-    }
-
-    public void setRegionsNames(string[] regionsNames)
-    {
-        this.regionsNames = regionsNames;
+        return city1.Population < city2.Population;
     }
 }

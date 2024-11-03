@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionHandling", "Except
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading1", "OperatorOverloading1\OperatorOverloading1.csproj", "{5D8D7534-AD0A-42EE-B0DB-792386DC7DA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inheritance", "Inheritance\Inheritance.csproj", "{AFEB4C25-A2B8-4A08-8324-8EAB77BDC7FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{5D8D7534-AD0A-42EE-B0DB-792386DC7DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D8D7534-AD0A-42EE-B0DB-792386DC7DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D8D7534-AD0A-42EE-B0DB-792386DC7DA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFEB4C25-A2B8-4A08-8324-8EAB77BDC7FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFEB4C25-A2B8-4A08-8324-8EAB77BDC7FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFEB4C25-A2B8-4A08-8324-8EAB77BDC7FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFEB4C25-A2B8-4A08-8324-8EAB77BDC7FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

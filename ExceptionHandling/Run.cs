@@ -1,13 +1,12 @@
-﻿using System.ComponentModel;
+﻿namespace ExceptionHandling;
 
-namespace ExceptionHandling;
-
-class Run
+public class Run
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        var a = BaseNumberConverter
-        
-        Console.WriteLine("Hello, World!");
+        // var calc = new Calculator();
+
+        var foreignPassport1 = new ForeignPassport("31242143", "John", "Smith", "USA", DateTime.Parse("10/14/2006"));
+        var foreignPassport2 = new ForeignPassport("31242143", "Joh+-n", "Smit3h", "USA", DateTime.Parse("10/14/2006"));
     }
 }

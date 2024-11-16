@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading1", "Ope
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inheritance", "Inheritance\Inheritance.csproj", "{AFEB4C25-A2B8-4A08-8324-8EAB77BDC7FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructsEnums", "StructsEnums\StructsEnums.csproj", "{0B584892-CE00-4C94-A82C-D27A134B4746}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{AFEB4C25-A2B8-4A08-8324-8EAB77BDC7FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFEB4C25-A2B8-4A08-8324-8EAB77BDC7FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFEB4C25-A2B8-4A08-8324-8EAB77BDC7FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B584892-CE00-4C94-A82C-D27A134B4746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B584892-CE00-4C94-A82C-D27A134B4746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B584892-CE00-4C94-A82C-D27A134B4746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B584892-CE00-4C94-A82C-D27A134B4746}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

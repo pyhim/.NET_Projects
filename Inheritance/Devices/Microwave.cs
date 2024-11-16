@@ -1,12 +1,12 @@
-namespace Inheritance;
+namespace Inheritance.Devices;
 
-public class Ship : Device
+public class Microwave : Device
 {
-    public Ship() : base("Ship", "Sails through the sea") {}
+    public Microwave() : base("Microwave", "Heats up the food") {}
 
     public override void Sound()
     {
-        Console.WriteLine("*ship horn*");
+        Console.WriteLine("*microwave sound*");
     }
 
     public override void Show()

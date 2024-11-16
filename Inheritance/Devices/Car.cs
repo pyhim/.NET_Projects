@@ -1,4 +1,4 @@
-namespace Inheritance;
+namespace Inheritance.Devices;
 
 public class Car : Device
 {

@@ -1,18 +1,18 @@
 namespace OperatorOverloading1;
 
-public class BookList
+public class Library
 {
     private Book?[] _books;
     
     public Book? this[int index] => _books[index];
     public int Length => 10;
 
-    public BookList(Book?[] books)
+    public Library(Book?[] books)
     {
         _books = books;
     }
 
-    public BookList()
+    public Library()
     {
         _books = new Book[10];
 
@@ -76,17 +76,17 @@ public class BookList
         }
     }
 
-    public static BookList operator -(BookList books, Book book)
+    public static Library operator -(Library books, Book book)
     {
-        var newBookList = new BookList(books.ToArray());
+        var newBookList = new Library(books.ToArray());
         newBookList.Remove(book);
         
         return newBookList;
     }
     
-    public static BookList operator +(BookList books, int index)
+    public static Library operator +(Library books, int index)
     {
-        var newBookList = new BookList(books.ToArray());
+        var newBookList = new Library(books.ToArray());
         newBookList.Remove(index);
         
         return newBookList;

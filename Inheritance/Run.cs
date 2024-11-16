@@ -1,4 +1,6 @@
-﻿namespace Inheritance;
+﻿using Inheritance.Devices;
+
+namespace Inheritance;
 
 class Run
 {

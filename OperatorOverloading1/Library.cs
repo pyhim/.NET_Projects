@@ -1,6 +1,8 @@
+using System.Collections;
+
 namespace OperatorOverloading1;
 
-public class Library
+public class Library : IEnumerable
 {
     private Book?[] _books;
     
@@ -90,5 +92,47 @@ public class Library
         newBookList.Remove(index);
         
         return newBookList;
+    }
+
+    public IEnumerator GetEnumerator()
+    {
+        return new LibraryEnumerator(_books);
+    }
+}
+
+public class LibraryEnumerator : IEnumerator
+{
+    private Book?[] _books;
+    private int _position = -1;
+
+    public LibraryEnumerator(Book?[] books)
+    {
+        _books = books;
+    }
+
+    public bool MoveNext()
+    {
+        _position++;
+        return _position < _books.Length;
+    }
+
+    public void Reset()
+    {
+        _position = -1;
+    }
+
+    public object? Current
+    {
+        get
+        {
+            try
+            {
+                return _books[_position];
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new InvalidOperationException();
+            }
+        }
     }
 }

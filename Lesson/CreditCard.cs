@@ -2,6 +2,42 @@ namespace Lesson;
 
 public class CreditCard
 {
+    internal class OnTopUp
+    {
+        private double _amount;
+        
+        public OnTopUp(double amount) => _amount = amount;
+        
+        public void action(CreditCard creditCard)
+        {
+            if (creditCard.Amount > _amount)
+            {
+                Console.WriteLine("Account has been topped up");
+                return;
+            }
+            _amount = creditCard.Amount;
+        }
+    }
+
+    internal class OnTopDown
+    {
+        private double _amount;
+        
+        public OnTopUp(double amount) => _amount = amount;
+        
+        public void action(CreditCard creditCard)
+        {
+            if (creditCard.Amount < _amount)
+            {
+                Console.WriteLine("Account has been topped down");
+                return;
+            }
+            _amount = creditCard.Amount;
+        }
+    }
+    
+    private event EventHandler<CreditCard>? onCreditCardChanged;
+    
     private string _cardNumber;
     private string _cardholderName;
     private string _expiryDate;

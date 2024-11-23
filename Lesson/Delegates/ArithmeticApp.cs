@@ -12,6 +12,7 @@ public class ArithmeticApp
         Console.Write("Enter the number: ");
         int number = int.Parse(Console.ReadLine());
 
+        // Зіп метод був використан на уроці з вашого дозволу
         foreach ((CheckNumber checker, string name) in checkNumber.Zip(names, (x, y) => (x, y)))
         {
             if (checker(number))

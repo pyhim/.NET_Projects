@@ -25,6 +25,7 @@ public class Company
     public string Address { get; init; }
     public FullName CEOName { get; init; }
     public int NumberOfEmployees { get; init; }
+    public Employee[] Employees { get; set; }
 
     public Company(string name, DateTime dateOfCreation, string businessProfile, string address, FullName ceoName,
         int numberOfEmployees)
